@@ -10,7 +10,8 @@ RUN CGO_ENABLED=0 \
     go build -o CloudflareST
 
 FROM --platform=$TARGETPLATFORM alpine:latest
-COPY --from=build /app /app
-RUN chmod +x /app/CloudflareST
+WORKDIR /app
+COPY --from=build /app/ . 
+RUN chmod +x CloudflareST
 ENV PATH="/app:${PATH}"
 ENTRYPOINT ["sleep", "infinity"]
