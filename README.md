@@ -1,3 +1,7 @@
+# Docker版使用：
+docker exec <容器名> CloudflareST <参数>
+搭配macvlan及自定义dns服务器，可实现无感测速、替换cf ip
+
 # XIU2/CloudflareSpeedTest
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/XIU2/CloudflareSpeedTest.svg?style=flat-square&label=Go&color=00ADD8&logo=go)](https://github.com/XIU2/CloudflareSpeedTest/)
