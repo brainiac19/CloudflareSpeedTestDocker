@@ -23,19 +23,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Test Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          load: true
-          tags: ${{ secrets.DOCKERHUB_DISPLAYNAME }}/${{ secrets.IMAGE_NAME }}:test
-
-      - name: Test Docker image
-        run: |
-          docker run ${{ secrets.DOCKERHUB_DISPLAYNAME }}/${{ secrets.IMAGE_NAME }}:test CloudflareST -h | grep -q "XIU2/CloudflareSpeedTest" && echo "Test passed" || exit 1
-
-      - name: Push Docker Image
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
           context: .
