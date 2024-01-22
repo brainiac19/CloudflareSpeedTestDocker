@@ -10,7 +10,8 @@ RUN CGO_ENABLED=0 \
 
 FROM --platform=$TARGETPLATFORM alpine:latest
 COPY --from=build /app /config
-WORKDIR /config
-RUN chmod +x ./entrypoint.sh
-RUN chmod +x ./CloudflareST
+RUN chmod +x /config/entrypoint.sh
+RUN chmod +x /config/CloudflareST
+WORKDIR /app
+ENV PATH="/app:${PATH}"
 ENTRYPOINT ["/config/entrypoint.sh"]
