@@ -4,6 +4,7 @@ ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 WORKDIR /app
 COPY . .
+RUN ls
 RUN CGO_ENABLED=0 \
     GOOS=$(echo $TARGETPLATFORM | cut -d / -f1) \
     GOARCH=$(echo $TARGETPLATFORM | cut -d / -f2) \
@@ -12,6 +13,7 @@ RUN CGO_ENABLED=0 \
 FROM --platform=$TARGETPLATFORM alpine:latest
 WORKDIR /app
 COPY --from=build /app/ . 
+RUN ls
 RUN chmod +x CloudflareST
 ENV PATH="/app:${PATH}"
 ENTRYPOINT ["sleep", "infinity"]
