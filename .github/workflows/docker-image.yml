@@ -33,7 +33,7 @@ jobs:
 
       - name: Test Docker image
         run: |
-          docker run ${{ secrets.IMAGE_NAME }}:latest CloudflareST -h | grep -q "XIU2/CloudflareSpeedTest" && echo "Test passed" || exit 1
+          docker run ${{ secrets.DOCKERHUB_DISPLAYNAME }}/${{ secrets.IMAGE_NAME }}:latest CloudflareST -h | grep -q "XIU2/CloudflareSpeedTest" && echo "Test passed" || exit 1
 
       - name: Push Docker Image
         uses: docker/build-push-action@v5
