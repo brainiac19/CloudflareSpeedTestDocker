@@ -1,7 +1,10 @@
 #!/bin/sh
 
 if [ -z "$(ls -A /app)" ]; then
-  cp -r /config/. /app
+  cd  /config
+  cp  CloudflareST ip.txt ipv6.txt /app
 fi
 
+export PATH="/app:$PATH"
+cd /app
 sleep infinity
